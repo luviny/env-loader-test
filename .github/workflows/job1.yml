@@ -4,13 +4,13 @@ on:
     outputs:
       gzip-env-value:
         description: output value
-        value: test
+        value: ${{ jobs.test.outputs.gzip-env-value }}
   
 jobs:
   test:
     runs-on: ubuntu-latest
     outputs:
-      gzip-env-value: ${{ steps.ssm.outputs.gzip-env-value }}
+      gzip-env-value: ${{ steps.output-step.outputs.gzip-env-value }}
     steps:
       - uses: actions/checkout@v6
 
@@ -37,5 +37,6 @@ jobs:
       - name: Run Test2
         run: cat .env.test
       
-      - name: Run Test3
-        run: echo ${{ steps.ssm.outputs.gzip-env-value }}
+      - name: output
+        id: output-step
+        run: echo "gzip-env-value=${{ steps.ssm.outputs.gzip-env-value }}" >> $GITHUB_OUTPUT
