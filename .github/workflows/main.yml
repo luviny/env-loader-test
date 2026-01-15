@@ -1,0 +1,13 @@
+name: main.yml
+on:
+  push:
+
+jobs:
+  job1:
+    uses: ./.github/workflows/job1.yml
+    
+  job2:
+    uses: ./.github/workflows/job2.yml
+    needs: job1
+    with:
+      gzip-env-value: ${{ needs.job1.outputs.gzip-env-value }} 

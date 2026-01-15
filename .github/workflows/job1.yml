@@ -1,0 +1,37 @@
+name: job1.yml
+on:
+  workflow_call:     
+
+permissions:
+  id-token: write
+  
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    outputs:
+      gzip-env-value: ${{ steps.ssm.outputs.gzip-env-value }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@main
+        with:
+          role-to-assume: arn:aws:iam::331208495907:role/github_action_oidc
+          aws-region: ap-northeast-2
+
+      - name: SSM Parameter Store Env Loader
+        uses: luviny/aws-ssm-parameter-store-env-loader@v1.1.1
+        id: ssm
+        with:
+          aws-base-path: /test
+          aws-region: ap-northeast-2
+          env-file-name: .env.test
+          load-env: true
+          
+      - name: Run Test1
+        run: |
+          echo ${{ env.DB_HOST }}
+          echo $DB_HOST
+
+      - name: Run Test2
+        run: cat .env.test
