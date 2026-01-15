@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        
+      - run: echo ${{ inputs.gzip-env-value }}
 
       - name: Gzip Env Loader
         uses: luviny/gzip-env-loader@v1.0.1
