@@ -21,7 +21,7 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: SSM Parameter Store Env Loader
-        uses: luviny/aws-ssm-parameter-store-env-loader@v1.1.1
+        uses: luviny/aws-ssm-parameter-store-env-loader@v1.1.2
         id: ssm
         with:
           aws-base-path: /test
