@@ -7,10 +7,10 @@ permissions:
 
 jobs:
   job1:
-    uses: ./.github/workflows/job1.yml
+    uses: /luviny/env-loader-test/.github/workflows/job1.yml
     
   job2:
-    uses: ./.github/workflows/job2.yml
+    uses: /luviny/env-loader-test/.github/workflows/job2.yml
     needs: job1
-    with:
+    with:π
       gzip-env-value: ${{ needs.job1.outputs.gzip-env-value }} 
