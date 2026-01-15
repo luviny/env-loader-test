@@ -18,6 +18,12 @@ jobs:
           else
             echo "${{ inputs.gzip-env-value }}"
           fi
+          
+          if [ -z "${{ github.event.inputs.gzip-env-value }}" ]; then
+            echo "github.event.inputs gzip-env-value is empty"
+          else
+            echo "${{ github.event.inputs.gzip-env-value }}"
+          fi
 
       - name: Gzip Env Loader
         uses: luviny/gzip-env-loader@v1.0.1
