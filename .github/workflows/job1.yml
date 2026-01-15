@@ -3,7 +3,8 @@ on:
   workflow_call:
     outputs:
       gzip-env-value:
-        value: ${{ jobs.test.outputs.gzip-env-value }}
+        description: output value
+        value: test
   
 jobs:
   test:
