@@ -13,5 +13,5 @@ jobs:
   job2:
     uses: luviny/env-loader-test/.github/workflows/job2.yml@main
     needs: job1
-    with:
+    secrets:
       gzip-env-value: ${{ needs.job1.outputs.gzip-env-value }}
