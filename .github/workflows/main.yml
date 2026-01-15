@@ -2,6 +2,9 @@ name: main.yml
 on:
   push:
 
+permissions:
+  id-token: write
+
 jobs:
   job1:
     uses: ./.github/workflows/job1.yml

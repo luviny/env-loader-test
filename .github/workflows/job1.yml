@@ -1,9 +1,6 @@
 name: job1.yml
 on:
-  workflow_call:     
-
-permissions:
-  id-token: write
+  workflow_call:
   
 jobs:
   test:
