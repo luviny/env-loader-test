@@ -35,3 +35,6 @@ jobs:
 
       - name: Run Test2
         run: cat .env.test
+      
+      - name: Run Test3
+        run: echo ${{ steps.ssm.outputs.gzip-env-value }}
