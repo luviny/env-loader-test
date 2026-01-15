@@ -1,9 +1,10 @@
 name: job2.yml
 on:
   workflow_call:
-    secrets:
+    inputs:
       gzip-env-value:
         required: true
+        type: string
   
 jobs:
   test:
@@ -11,12 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         
-      - run: echo ${{ secrets.gzip-env-value }}
+      - run: echo ${{ inputs.gzip-env-value }}
 
       - name: Gzip Env Loader
         uses: luviny/gzip-env-loader@v1.0.1
         with:
-          gzip-env-value: ${{ secrets.gzip-env-value }}
+          gzip-env-value: ${{ inputs.gzip-env-value }}
           env-file-name: .env.test
           load-env: true
           
