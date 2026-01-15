@@ -12,7 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         
-      - run: echo ${{ inputs.gzip-env-value }}
+      - run: |
+          if [ -z "${{ inputs.gzip-env-value }}" ]; then
+            echo "gzip-env-value is empty"
+          else
+            echo "${{ inputs.gzip-env-value }}"
+          fi
 
       - name: Gzip Env Loader
         uses: luviny/gzip-env-loader@v1.0.1
